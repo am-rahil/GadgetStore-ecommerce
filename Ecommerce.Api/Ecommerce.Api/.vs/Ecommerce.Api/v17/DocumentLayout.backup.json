@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\PROGRAMMING\\Ecommerce\\Ecommerce.Api\\Ecommerce.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BA03289-1053-479D-82F7-F97DE8D9EE23}|..\\Ecommerce.Entity\\Ecommerce.Entity.csproj|c:\\programming\\ecommerce\\ecommerce.api\\ecommerce.entity\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8601296F-0086-45CA-9F94-75FB83B8E833}|..\\Ecommerce.Service\\Ecommerce.Service.csproj|c:\\programming\\ecommerce\\ecommerce.api\\ecommerce.service\\repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8601296F-0086-45CA-9F94-75FB83B8E833}|..\\Ecommerce.Service\\Ecommerce.Service.csproj|c:\\programming\\ecommerce\\ecommerce.api\\ecommerce.service\\repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BA03289-1053-479D-82F7-F97DE8D9EE23}|..\\Ecommerce.Entity\\Ecommerce.Entity.csproj|c:\\programming\\ecommerce\\ecommerce.api\\ecommerce.entity\\models\\orderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2BA03289-1053-479D-82F7-F97DE8D9EE23}|..\\Ecommerce.Entity\\Ecommerce.Entity.csproj|c:\\programming\\ecommerce\\ecommerce.api\\ecommerce.entity\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -217,30 +217,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "C:\\PROGRAMMING\\Ecommerce\\Ecommerce.Api\\Ecommerce.Entity\\Models\\OrderDetail.cs",
               "RelativeDocumentMoniker": "..\\Ecommerce.Entity\\Models\\OrderDetail.cs",
               "ToolTip": "C:\\PROGRAMMING\\Ecommerce\\Ecommerce.Api\\Ecommerce.Entity\\Models\\OrderDetail.cs",
               "RelativeToolTip": "..\\Ecommerce.Entity\\Models\\OrderDetail.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBUAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwBUAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-16T10:36:20.281Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "OrderRepository.cs",
               "DocumentMoniker": "C:\\PROGRAMMING\\Ecommerce\\Ecommerce.Api\\Ecommerce.Service\\Repository\\OrderRepository.cs",
               "RelativeDocumentMoniker": "..\\Ecommerce.Service\\Repository\\OrderRepository.cs",
               "ToolTip": "C:\\PROGRAMMING\\Ecommerce\\Ecommerce.Api\\Ecommerce.Service\\Repository\\OrderRepository.cs",
               "RelativeToolTip": "..\\Ecommerce.Service\\Repository\\OrderRepository.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAUwKgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAwwKEAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-16T10:35:16.07Z",
               "EditorCaption": ""
