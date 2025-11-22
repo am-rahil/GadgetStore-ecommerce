@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+<div id="backtotop" class="product-page-container" *ngIf="!loading && product">
+
+  <div class="product-details-card">
+
+    <!-- LEFT SIDE IMAGES -->
+    <div class="image-section">
+
+      <div class="thumb-list">
+        <img [src]="product.imagePath" class="thumb-image" [class.active]="selectedImage === product.imagePath"
+          (mouseenter)="selectedImage = product.imagePath" />
+        <img *ngFor="let img of product.imagePaths" [src]="img" class="thumb-image"
+          [class.active]="selectedImage === img" (mouseenter)="selectedImage = img">
+      </div>
+
+      <div class="main-image-box">
+        <img [src]="selectedImage || product.imagePath" alt="Image" class="main-image">
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE DETAILS -->
+    <div class="details-section">
+      <h2 class="title">{{ product.productName }}</h2>
+
+      <p class="description">{{ product.description }}</p>
+
+      <p class="meta"><strong>Category:</strong> {{ product.categoryName }}</p>
+      <p class="meta"><strong>Supplier:</strong> {{ product.supplierName }}</p>
+
+      <h3 class="price">₹{{ product.price }}</h3>
+
+      <div class="btn-box">
+        <button class="btn-orange" (click)="addToCart(product.productId)">Add to Cart</button>
+        <button class="btn-buy" (click)="buyNow(product.productId)">Buy Now</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIMILAR PRODUCTS -->
+  <div class="similar-section" *ngIf="similarProducts.length > 0">
+    <h3 class="section-title">Similar Products</h3>
+
+    <div class="similar-grid">
+      <div class="sim-card" *ngFor="let sp of similarProducts" (click)="viewProduct(sp.productId)">
+
+        <img [src]="sp.imagePath" class="sim-img">
+
+        <h5>{{ sp.productName }}</h5>
+        <p class="price">₹{{ sp.price }}</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

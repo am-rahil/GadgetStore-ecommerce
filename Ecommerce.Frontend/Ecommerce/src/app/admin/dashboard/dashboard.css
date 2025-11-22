@@ -1,0 +1,74 @@
+:root {
+  --orange: #ff6b35;
+  --light-orange: #fff8f5;
+}
+
+.stat-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-card h5 {
+  font-size: 15px;
+  color: #888;
+}
+
+.stat-card h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ff6f00;
+}
+
+.text-orange {
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.mb-4 {
+  margin-bottom: 4rem !important;
+}
+
+h3 {
+  color: #ff8800;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  text-shadow: 0 1px 2px rgba(255, 136, 0, 0.2);
+  padding-left: 10px;
+}
+
+.transparent-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  font-size: 0.95rem;
+}
+
+.transparent-table th,
+.transparent-table td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.transparent-table thead {
+  color: #ff8800;
+  border-bottom: 2px solid #ff8800;
+}
+
+.transparent-table tr:hover {
+  background: rgba(255, 136, 0, 0.08);
+}

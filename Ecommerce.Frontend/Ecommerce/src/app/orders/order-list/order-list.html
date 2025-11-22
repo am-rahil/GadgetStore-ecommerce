@@ -1,0 +1,140 @@
+<app-navbar></app-navbar>
+<div class="order-list-container">
+    <div class="container py-5">
+        <h2 class="mb-4">My Orders</h2>
+        <!-- FILTER BAR -->
+        <div class="order-filter-bar mb-4 d-flex gap-2 flex-wrap">
+
+            <button class="btn btn-light filter-btn" [class.active]="statusFilter === ''" (click)="setFilter('')">
+                All
+            </button>
+
+            <button class="btn btn-light filter-btn" [class.active]="statusFilter === 'Pending'"
+                (click)="setFilter('Pending')">
+                Pending
+            </button>
+
+            <button class="btn btn-light filter-btn" [class.active]="statusFilter === 'Shipped'"
+                (click)="setFilter('Shipped')">
+                Shipped
+            </button>
+
+            <button class="btn btn-light filter-btn" [class.active]="statusFilter === 'Delivered'"
+                (click)="setFilter('Delivered')">
+                Delivered
+            </button>
+
+            <button class="btn btn-light filter-btn" [class.active]="statusFilter === 'Cancelled'"
+                (click)="setFilter('Cancelled')">
+                Cancelled
+            </button>
+
+        </div>
+
+        <!-- Loader -->
+        <div *ngIf="loading" class="text-center my-5">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- No Orders -->
+        <div *ngIf="!loading && orders.length === 0" class="text-center text-muted">
+            <p>No orders found.</p>
+            <button class="btn btn-orange" routerLink="/products">Shop Now</button>
+        </div>
+
+        <!-- Orders Found -->
+        <div *ngIf="orders.length > 0">
+
+            <!-- Section Title (status based) -->
+            <div *ngFor="let order of filteredOrders; let i = index">
+
+
+                <!-- PENDING -->
+                <h4 class="order-section-title"
+                    *ngIf="order.status === 'Pending' && (i === 0 || orders[i-1].status !== 'Pending')">
+                    🕒 Pending Orders
+                </h4>
+
+                <!-- SHIPPED -->
+                <h4 class="order-section-title"
+                    *ngIf="order.status === 'Shipped' && (i === 0 || orders[i-1].status !== 'Shipped')">
+                    🚚 Shipped Orders
+                </h4>
+
+                <!-- DELIVERED -->
+                <h4 class="order-section-title"
+                    *ngIf="order.status === 'Delivered' && (i === 0 || orders[i-1].status !== 'Delivered')">
+                    ✅ Delivered Orders
+                </h4>
+
+                <!-- CANCELLED -->
+                <h4 class="order-section-title"
+                    *ngIf="order.status === 'Cancelled' && (i === 0 || orders[i-1].status !== 'Cancelled')">
+                    ❌ Cancelled Orders
+                </h4>
+
+                <!-- ORDER CARD -->
+                <div class="card mb-4 shadow-sm p-3 order-card" (click)="viewOrderDetails(order.orderId)">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5>Order #{{ order.orderId }}</h5>
+                            <p class="text-muted mb-0">Placed on {{ order.orderDate | date:'medium' }}</p>
+
+                            <p>
+                                Status:
+                                <span class="badge" [ngClass]="{
+                                    'bg-warning text-dark': order.status === 'Pending',
+                                    'bg-info text-dark': order.status === 'Shipped',
+                                    'bg-success': order.status === 'Delivered',
+                                    'bg-secondary': order.status === 'Cancelled'
+                                }">
+                                    {{ order.status }}
+                                </span>
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="text-end">₹{{ order.totalAmount }}</h5>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Order Items -->
+                    <div *ngFor="let item of order.orderDetails" class="d-flex align-items-center mb-2">
+                        <img [src]="'http://localhost:5208/' + (item.imagePath || 'assets/default-product.png')"
+                            class="me-3 rounded" width="80" height="80">
+
+                        <div>
+                            <strong>{{ item.productName }}</strong>
+                            <p class="mb-0 text-muted">x{{ item.quantity }} — ₹{{ item.unitPrice }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="mt-3">
+
+                        <!-- Cancel allowed -->
+                        <button class="btn btn-danger btn-sm cancel-order-btn"
+                            *ngIf="order.status === 'Pending' || order.status === 'Shipped'"
+                            (click)="cancelOrder(order.orderId); $event.stopPropagation()">
+                            Cancel Order
+                        </button>
+
+                        <!-- Final state -->
+                        <button class="btn btn-secondary btn-sm cancel-order-btn"
+                            *ngIf="order.status === 'Delivered' || order.status === 'Cancelled'" disabled>
+                            {{ order.status }}
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

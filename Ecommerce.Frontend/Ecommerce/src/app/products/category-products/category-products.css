@@ -1,0 +1,230 @@
+/* ============ MAIN LAYOUT ============ */
+.category-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 0 40px;
+}
+
+/* ============ CATEGORY NAVIGATION BAR ============ */
+.category-bar {
+  background: linear-gradient(to bottom, #fff5eb, #fffaf5 40%, white 100%);
+  padding: 6px 0;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin-bottom: -10px;
+}
+
+.cat-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.cat-scroll span {
+  padding: 6px 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.cat-scroll span:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* ============ PRODUCTS SECTION ============ */
+.product-section {
+  background-color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 12px;
+ 
+}
+
+.section-title {
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ============ FILTER BAR ============ */
+.filter-bar {
+  padding: 10px 15px;
+}
+
+.filter-select,
+.filter-input {
+  max-width: 180px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: #ff7a00;
+  box-shadow: 0 0 4px rgba(255,122,0,0.5);
+}
+
+/* ============ PRODUCT GRID ============ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  justify-content: center;
+}
+
+/* ============ PRODUCT CARD ============ */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card:hover img {
+  transform: scale(1.07);
+}
+
+/* ============ PRODUCT IMAGE ============ */
+.product-img {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.product-img img {
+  width: auto;
+  height: 100%;
+  max-width: 95%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* ============ PRODUCT INFO ============ */
+.product-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.product-info h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.product-info .desc {
+  font-size: 0.85rem;
+  color: #777;
+  height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.category-tag, .supplier-tag {
+  background: #fff6f0;
+  color: #ff7a00;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.price {
+  font-weight: 700;
+  color: #ff7a00;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+
+/* ============ BUTTONS ============ */
+.btn-orange {
+  background-color: #ff7a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #e66a00;
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-state {
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  color: #ffb84d;
+  margin-bottom: 20px;
+}
+
+.empty-state h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ============ ALERT ============ */
+.alert {
+  border-radius: 12px;
+  border: none;
+  font-weight: 500;
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .product-section {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-container {
+    padding: 0 20px;
+  }
+}

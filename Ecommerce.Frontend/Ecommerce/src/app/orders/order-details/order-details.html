@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+
+<div class="container py-5" *ngIf="!loading && order">
+    <h3 class="mb-3">Order #{{ order.orderId }}</h3>
+
+    <div class="card mb-4 p-3 shadow-sm">
+        <h5>Order Information</h5>
+        <p><strong>Date:</strong> {{ order.orderDate | date:'medium' }}</p>
+        <p><strong>Status:</strong>
+            <span class="badge" [ngClass]="{
+          'bg-warning': order.status === 'Pending',
+          'bg-primary': order.status === 'Shipped',
+          'bg-success': order.status === 'Delivered',
+          'bg-danger': order.status === 'Cancelled'
+        }">
+                {{ order.status }}
+            </span>
+        </p>
+        <p><strong>Total Amount:</strong> ₹{{ order.totalAmount }}</p>
+    </div>
+
+    <div class="card mb-4 p-3 shadow-sm">
+        <h5>Shipping Details</h5>
+        <p><strong>Address:</strong> {{ order.address }}</p>
+        <p><strong>Pincode:</strong> {{ order.pincode }}</p>
+        <p><strong>Phone:</strong> {{ order.phone }}</p>
+    </div>
+
+    <div class="card p-3 shadow-sm">
+        <h5>Items</h5>
+        <div *ngFor="let item of order.orderDetails" class="d-flex align-items-center border-bottom py-3">
+            <img [src]="item.imagePath ? imageBaseUrl + item.imagePath : 'assets/no-image.png'"
+                alt="{{ item.productName }}" class="rounded me-3" width="80" height="80">
+            <div class="flex-grow-1">
+                <h6>{{ item.productName }}</h6>
+                <p class="mb-1 text-muted">₹{{ item.unitPrice }} × {{ item.quantity }}</p>
+                <p class="fw-bold">Subtotal: ₹{{ item.subTotal }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="btn-box">
+        <button class="btn btn-orange " (click)="backToOrders()">← Back to My Orders</button>
+        <button class="btn-download" (click)="downloadReceipt()">📥 Order Receipt</button>
+    </div>
+</div>
+
+<div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-warning"></div>
+    <p class="mt-3">Loading order details...</p>
+</div>
+<app-footer></app-footer>

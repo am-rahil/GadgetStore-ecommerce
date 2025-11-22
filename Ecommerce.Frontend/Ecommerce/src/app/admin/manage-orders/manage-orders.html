@@ -1,0 +1,79 @@
+<div class="container-fluid py-4">
+    <h3 class="text-center mb-4 ">Admin Dashboard</h3>
+
+
+    <ag-grid-angular class="ag-theme-quartz my-grid" style="width: 100%; height: 550px;" [rowData]="orders"
+        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [pagination]="true" [paginationPageSize]="20"
+        (cellClicked)="onGridClick($event)" (cellValueChanged)="onCellValueChanged($event)" [singleClickEdit]="true"  >
+    </ag-grid-angular>
+
+
+    <!-- Modal Popup -->
+    <div *ngIf="showModal" class="modal-backdrop fade show"></div>
+    <div *ngIf="showModal" class="modal fade show d-block" tabindex="-1" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <span *ngIf="loadingDetails">Loading...</span>
+                        <span *ngIf="!loadingDetails">Order #{{ selectedOrder?.orderId }}</span>
+                    </h5>
+                    <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Loading State -->
+                    <div *ngIf="loadingDetails" class="text-center py-4">
+                        <div class="spinner-border text-warning"></div>
+                        <p class="mt-2">Loading order details...</p>
+                    </div>
+
+                    <!-- Order Details Content -->
+                    <div *ngIf="!loadingDetails && selectedOrder">
+                        <div class="card mb-3 p-3 shadow-sm">
+                            <h6>Order Information</h6>
+                            <p><strong>Date:</strong> {{ selectedOrder.orderDate | date:'medium' }}</p>
+                            <p><strong>Status:</strong>
+                                <span class="badge" [ngClass]="{
+                'bg-warning': selectedOrder.status === 'Pending',
+                'bg-primary': selectedOrder.status === 'Shipped', 
+                'bg-success': selectedOrder.status === 'Delivered',
+                'bg-danger': selectedOrder.status === 'Cancelled'
+              }">
+                                    {{ selectedOrder.status }}
+                                </span>
+                            </p>
+                            <p><strong>Total Amount:</strong> ₹{{ selectedOrder.totalAmount }}</p>
+                        </div>
+                        <div class="card mb-3 p-3 shadow-sm">
+                            <h6>Items ({{ selectedOrder.orderDetails?.length }})</h6>
+                            <div *ngFor="let item of selectedOrder.orderDetails"
+                                class="d-flex align-items-center border-bottom py-2">
+                                <img [src]="item.imagePath ? imageBaseUrl + item.imagePath : 'assets/no-image.png'"
+                                    alt="{{ item.productName }}" class="rounded me-3" width="60" height="60">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">{{ item.productName }}</h6>
+                                    <p class="mb-1 text-muted">₹{{ item.unitPrice }} × {{ item.quantity }}</p>
+                                    <p class="fw-bold mb-0">Subtotal: ₹{{ item.subTotal }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3 p-3 shadow-sm">
+                            <h6>Shipping Details</h6>
+                            <p><strong>Address:</strong> {{ selectedOrder.address }}</p>
+                            <p><strong>Pincode:</strong> {{ selectedOrder.pincode }}</p>
+                            <p><strong>Phone:</strong> {{ selectedOrder.phone }}</p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

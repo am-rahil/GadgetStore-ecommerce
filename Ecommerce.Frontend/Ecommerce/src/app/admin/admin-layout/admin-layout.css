@@ -1,0 +1,108 @@
+/* Overall container layout */
+.admin-container {
+  display: flex;
+  height: 100vh;
+  background: #fff7ef;
+  font-family: 'Poppins', sans-serif;
+  margin-top: -80px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #faaa31;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 136, 0, 0.4);
+}
+
+/* Logo Section */
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #fffdf9;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: -5px;
+}
+
+/* Nav Menu */
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: #fff;
+  color: #ff8800;
+  transform: scale(1.05);
+}
+
+.active {
+  background: #fff;
+  color: #ff8800;
+  font-weight: 600;
+}
+
+/* Logout button */
+.logout-section {
+  text-align: center;
+}
+
+.logout-btn {
+  width: 100%;
+  background: white;
+  color: #ff8800;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #ff6600;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Main content */
+.content {
+  flex-grow: 1;
+  background: #fff7ef;
+  padding: 25px;
+  overflow-y: auto;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}

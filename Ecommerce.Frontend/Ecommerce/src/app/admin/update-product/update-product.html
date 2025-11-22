@@ -1,0 +1,112 @@
+<div class="container py-2">
+    <h3 class="text-center mb-4">Update Product</h3>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-warning"></div>
+        <p>Loading product details...</p>
+    </div>
+
+    <!-- Update Form -->
+    <form *ngIf="!loading" [formGroup]="productForm" (ngSubmit)="updateProduct()" class="card p-4 shadow-sm">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label>Product Name</label>
+                <input type="text" class="form-control" formControlName="productName" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Price</label>
+                <input type="number" class="form-control" formControlName="price" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Stock Quantity</label>
+                <input type="number" class="form-control" formControlName="stockQuantity" />
+            </div>
+
+            <!-- <div class="col-md-6">
+                <label>Category ID</label>
+                <input type="number" class="form-control" formControlName="categoryId" />
+            </div> -->
+
+
+            <!-- Category Dropdown -->
+            <div class="form-group mb-3 col-md-6">
+                <label>Category</label>
+                <select formControlName="categoryId" class="form-select">
+                    <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+            </div>
+
+
+            <!-- <div class="col-md-6">
+                <label>Supplier ID</label>
+                <input type="number" class="form-control" formControlName="supplierId" />
+            </div> -->
+
+
+            <!-- Supplier Dropdown -->
+            <div class="form-group mb-3 col-md-6">
+                <label>Supplier</label>
+                <select formControlName="supplierId" class="form-select">
+                    <option *ngFor="let supplier of suppliers" [value]="supplier.id">
+                        {{ supplier.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label>Description</label>
+                <textarea class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+
+            <div class="col-md-6">
+                <label>Product Image</label>
+                <input type="file" class="form-control" (change)="onImageChange($event)" />
+            </div>
+            <div class="col-md-4">
+                <label>Add New Additional Images</label>
+                <input type="file" class="form-control" (change)="onGalleryImagesChange($event)" multiple />
+            </div>
+            <button class="btn btn-danger col-md-2" (click)="clearGallery()">
+                Clear
+            </button>
+
+
+
+            <div class="col-md-6 text-left">
+                <p class="fw-semibold">Preview / Existing Image</p>
+                <img *ngIf="imagePreview; else current" [src]="imagePreview" class="img-thumbnail" width="120" />
+                <ng-template #current>
+                    <img *ngIf="currentImagePath" [src]="currentImagePath" class="img-thumbnail" width="120" />
+                </ng-template>
+            </div>
+
+            <!-- To show other related images -->
+
+            <div class="col-md-6 text-left">
+                <p class="fw-semibold">Other Images</p>
+
+                <div *ngIf="galleryImages.length > 0; else noImages" class="d-flex gap-2 flex-wrap">
+                    <img *ngFor="let img of galleryImages" [src]="img" class="img-thumbnail" width="120" height="120" />
+                </div>
+
+                <ng-template #noImages>
+                    <p class="text-muted">No additional images uploaded.</p>
+                </ng-template>
+            </div>
+
+
+            <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn1  btn-orange px-4 py-2">Update Product</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+</div>

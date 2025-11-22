@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:host {
+  --primary-color: #f97316;
+  --primary-hover: #ea580c;
+  --input-bg: #f3f4f6;
+  --text-color: #333;
+  --text-muted: #6c757d;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ============ Layout ============ */
+.auth-page-container {
+  margin-top: -62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fff, #fef3e6);
+  padding: 2rem;
+}
+
+.auth-card-container {
+  max-width: 920px;
+  width: 100%;
+  background-color: transparent;
+  border-radius: 1.8rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ============ Left Side ============ */
+.left-side {
+  padding: 1.2rem;
+  display: flex;
+}
+
+.orange-box {
+  background-image: url("/assets/bgregister.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 3rem;
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  transition: transform 0.5s ease;
+}
+
+.orange-box:hover {
+  transform: scale(1.03);
+}
+
+/* ============ Right Side ============ */
+.right-side {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.form-content-wrapper {
+  max-width: 360px;
+  width: 100%;
+}
+
+/* ============ Logo & Headings ============ */
+.auth-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.auth-logo:hover {
+  color: var(--primary-color);
+}
+
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  margin-right: 0.5rem;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* ============ Form Inputs ============ */
+.form-group {
+  position: relative;
+}
+
+.form-control {
+  background-color: var(--input-bg);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.form-control:focus {
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+}
+
+/* Password Toggle Icon */
+.toggle-password {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+  color: var(--primary-color);
+}
+
+/* Error Messages */
+.error-message {
+  font-size: 0.8rem;
+  color: #dc3545;
+  margin-top: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  height: 16px;
+  display: block;
+}
+
+.error-message.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Forgot Password */
+.forgot-password-link {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ============ Button ============ */
+.btn-submit {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  background-color: #fcd34d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============ Footer ============ */
+.footer-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-link a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.nav-logo-section:hover {
+  transform: scale(1.05);  
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 991.98px) {
+  .auth-card-container {
+    box-shadow: none;
+  }
+
+  .right-side {
+    padding: 2rem 1.5rem;
+  }
+
+  .orange-box {
+    border-radius: 2rem;
+  }
+}

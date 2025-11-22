@@ -1,0 +1,58 @@
+<div class="container py-4">
+  <h3 class="text-center mb-5">Manage Categories</h3>
+
+  <!-- Category Form -->
+  <div class="card p-4 shadow-sm mb-4">
+    <form [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-5">
+          <input type="text" class="form-control" formControlName="categoryName" placeholder="Category Name" />
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-orange w-100">
+            {{ editingCategoryId ? 'Update' : 'Add' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-warning"></div>
+    <p class="text-muted mt-2">Loading categories...</p>
+  </div>
+
+  <!-- Categories Table -->
+  <div *ngIf="!loading && categories.length > 0">
+    <table class="table table-bordered table-striped text-center align-middle shadow-sm">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Category Name</th>    
+          <th>Description</th>
+          <th style="width: 20%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of categories">
+          <td>{{ cat.categoryId }}</td>
+          <td>{{ cat.categoryName }}</td>
+          <td>{{ cat.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="editCategory(cat)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteCategory(cat.categoryId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Categories Message -->
+  <div *ngIf="!loading && categories.length === 0" class="text-center text-muted mt-3">
+    <p>No categories found.</p>
+  </div>
+</div>

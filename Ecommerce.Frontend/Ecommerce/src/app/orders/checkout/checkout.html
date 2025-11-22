@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div class="container py-5">
+  <h2 class="mb-4">Checkout</h2>
+
+  <div *ngIf="cartItems.length === 0" class="text-center text-muted">
+    <p>Your cart is empty.</p>
+    <button routerLink="/cart/cartpage" class="btn btn-orange">Go to Cart</button>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="row">
+    <div class="col-md-6">
+      <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <textarea class="form-control" formControlName="address" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Pincode</label>
+          <input class="form-control" formControlName="pincode" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input class="form-control" formControlName="phone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Payment Method</label>
+          <select class="form-select" formControlName="paymentMethod">
+            <option value="COD">Cash on Delivery</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+          </select>
+        </div>
+
+        <button class="btn btn-orange w-100 mt-3" type="submit" [disabled]="loading">
+          {{ loading ? 'Placing Order...' : 'Place Order' }}
+        </button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card p-3 shadow-sm">
+        <h5>Order Summary</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between"
+              *ngFor="let item of cartItems">
+            <span>{{ item.productName }} (x{{ item.quantity }})</span>
+            <strong>₹{{ item.totalPrice }}</strong>
+          </li>
+        </ul>
+        <hr />
+        <h4 class="text-end">Total: ₹{{ totalAmount }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,69 @@
+/* ============================
+   GLOBAL THEME VARIABLES
+============================ */
+:root {
+  --primary: #ff7a00;
+  --primary-light: #ff8f26;
+  --primary-dark: #e26600;
+
+  --text-dark: #222;
+  --text-light: #555;
+  --bg-light: #f7f7f7;
+
+  --radius: 8px;
+  --font: 'Poppins', sans-serif;
+}
+
+/* Global font */
+* {
+  font-family: var(--font);
+  transition: 0.2s ease; /* smooth animation everywhere */
+}
+
+/* Remove focus outline (Bootstrap override) */
+*:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Scrollbar styling – clean minimal */
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* Clean modern links */
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Limit max container width for premium layout */
+.container {
+  max-width: 1280px;
+}
+
+/* Button animation */
+button,
+.btn {
+  transition: 0.25s ease-in-out;
+}
+
+/* Body padding for fixed navbar + category bar */
+body {
+  padding-top: 80px;
+  background: #ffffff;
+}

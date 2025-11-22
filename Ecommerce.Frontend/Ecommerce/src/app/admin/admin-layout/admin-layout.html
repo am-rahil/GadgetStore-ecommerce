@@ -1,0 +1,46 @@
+<div class="admin-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-section">
+            <h2 class="logo"> <span>Admin</span></h2>
+            <p class="tagline">Your Store Hub</p>
+        </div>
+
+        <ul class="nav-menu">
+            <li>
+                <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link">
+                    📊 Dashboard
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/manage-products" routerLinkActive="active" class="nav-link">
+                    📦 Products
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/manage-categories" routerLinkActive="active" class="nav-link">
+                    🗂️ Categories
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/manageOrders" routerLinkActive="active" class="nav-link">
+                    🚚 Orders
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin/manageUsers" routerLinkActive="active" class="nav-link">
+                    👥 Users
+                </a>
+            </li>
+        </ul>
+
+        <div class="logout-section">
+            <button class="logout-btn" (click)="logout()"> Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

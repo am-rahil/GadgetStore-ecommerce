@@ -1,0 +1,54 @@
+.footer {
+  background-color: #fff1e3;;
+  padding: 25px 0;
+  font-family: "Poppins", sans-serif;
+  color: #555;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.05); /* subtle top shadow */
+  border-top: none; /* removed ugly orange line */
+}
+
+/* Brand */
+.footer .footer-brand {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.footer .footer-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.footer .brand-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ff7a00;
+  letter-spacing: 0.5px;
+}
+
+/* Social Icons */
+.footer .social-icons a {
+  color: #666;
+  font-size: 1.25rem;
+  margin: 0 0.4rem;
+  transition: 0.25s ease;
+}
+
+.footer .social-icons a:hover {
+  color: #ff7a00;
+  transform: translateY(-2px);
+}
+
+/* Brand Accent Text */
+.text-brand {
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer .social-icons {
+    margin-top: 10px;
+  }
+}

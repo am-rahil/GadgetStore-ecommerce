@@ -1,0 +1,64 @@
+<nav class="main-navbar fixed-top">
+  <div class="container navbar-inner">
+
+    <!-- Logo -->
+    <a class="nav-logo-section" routerLink="/home">
+      <img src="assets/logo.png" class="nav-logo-img" alt="logo" />
+      <span class="nav-brand-text">GadgetStore</span>
+    </a>
+
+    <!-- Search Bar -->
+    <div class="nav-search">
+      <input type="text" placeholder="Search gadgets..." [(ngModel)]="searchQuery" (keyup.enter)="searchProduct()">
+      <button (click)="searchProduct()"><i class="bi bi-search"></i></button>
+    </div>
+
+
+    <!-- Right Menu -->
+    <ul class="nav-menu">
+
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+
+      <!-- Categories -->
+      <li class="dropdown">
+        <a class="dropdown-toggle">Categories</a>
+        <div class="dropdown-menu">
+          <a *ngFor="let cat of categories" (click)="filterByCategory(cat.categoryId)">
+            {{ cat.categoryName }}
+          </a>
+        </div>
+      </li>
+
+      <!-- Cart -->
+      <li *ngIf="isLoggedIn">
+        <a routerLink="/orders/cartpage"><i class="bi bi-cart2"></i></a>
+      </li>
+
+      <!-- Orders -->
+      <li *ngIf="isLoggedIn">
+        <a routerLink="/orders/orderlist">Orders</a>
+      </li>
+
+      <!-- Login/Register -->
+      <ng-container *ngIf="!isLoggedIn; else userMenu">
+        <li><a class="btn-nav" routerLink="/auth/login">Login</a></li>
+        <li><a class="btn-nav-outline" routerLink="/auth/register">Register</a></li>
+      </ng-container>
+
+      <!-- User -->
+      <ng-template #userMenu>
+        <li class="dropdown">
+          <a class="dropdown-toggle">👤 {{ userName }}</a>
+          <div class="dropdown-menu">
+            <a routerLink="/profile">My Profile</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ng-template>
+
+    </ul>
+
+  </div>
+
+
+</nav>

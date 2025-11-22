@@ -1,0 +1,47 @@
+.container {
+  max-width: 900px;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
+}
+
+img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.btn-orange {
+  background-color: #ff7a00;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-orange:hover {
+  background-color: #e66a00;
+}
+
+.btn-box {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+.btn-download {
+  background-color: #008bff;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+.btn-download:hover {
+  background-color: #0077dd;
+}

@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+
+<div class="category-container">
+    <!-- Category Navigation Bar -->
+    <div class="category-bar">
+        <div class="container cat-scroll">
+            <span *ngFor="let cat of categories" (click)="filterByCategory(cat.categoryId)">
+                {{ cat.categoryName }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <section id="productSection" class="product-section container-fluid py-4 ">
+        <h3 class="text-center mb-4 section-title">{{ getCategoryName() }} Collection</h3>
+
+        <!-- Filter Controls -->
+        <div class="filter-bar d-flex gap-3 align-items-center justify-content-center mb-4">
+            <!-- Sort Dropdown -->
+            <select class="form-select filter-select" [(ngModel)]="sortType" (change)="applyFilters()">
+                <option value="">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+
+            <!-- Price Range Filters -->
+            <input type="number" class="form-control filter-input" placeholder="Min Price" [(ngModel)]="minPrice" (input)="applyFilters()">
+            <input type="number" class="form-control filter-input" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="applyFilters()">
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="loading" class="text-center my-5">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-muted">Loading amazing products...</p>
+        </div>
+
+        <!-- Error State -->
+        <div *ngIf="errorMsg" class="alert alert-danger text-center mx-auto" style="max-width: 500px;">
+            {{ errorMsg }}
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-grid" *ngIf="!loading && filteredProducts.length > 0">
+            <div class="product-card" *ngFor="let p of filteredProducts" (click)="viewProductDetails(p.productId)">
+                <div class="product-img">
+                    <img [src]="p.imagePath" alt="{{ p.productName }}" (error)="p.imagePath = 'assets/no-image.png'">
+                </div>
+                <div class="product-info">
+                    <h5>{{ p.productName }}</h5>
+                    <p class="desc">{{ p.description }}</p>
+                    <div class="product-meta">
+                        <span class="category-tag">{{ p.categoryName }}</span>
+                        <span class="supplier-tag">{{ p.supplierName }}</span>
+                    </div>
+                    <p class="price">₹{{ p.price }}</p>
+                    <button class="btn btn-orange" (click)="addToCart($event, p.productId)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="!loading && filteredProducts.length === 0" class="text-center mt-5">
+            <div class="empty-state">
+                <i class="bi bi-inboxes empty-icon"></i>
+                <h4>No Products Found</h4>
+                <p class="text-muted">We couldn't find any products in this category.</p>
+                <button class="btn btn-orange" routerLink="/products">Browse All Products</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<app-footer></app-footer>

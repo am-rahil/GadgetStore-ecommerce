@@ -1,0 +1,71 @@
+<div class="auth-page-container">
+  <div class="auth-card-container">
+    <div class="row g-0 ">
+
+      <!-- Left Orange Box with Background -->
+      <div class="col-lg-6 d-none d-lg-flex left-side">
+        <div class="orange-box"></div>
+      </div>
+
+      <!-- Right Side (Login Form) -->
+      <div class="col-lg-6 right-side">
+        <div class="form-content-wrapper">
+
+          <!-- Logo -->
+          
+            <div class="auth-logo">
+              <a class="nav-logo-section" routerLink="/home">
+              <img src="/assets/logo.png" alt="Gadget Store Logo" class="logo-icon" />
+              Gadget Store
+          </a>
+        </div>
+
+        <!-- Headings -->
+        <h2 class="form-title">Welcome Back</h2>
+        <p class="form-subtitle">Please login to your account</p>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginform" (ngSubmit)="onLogin()">
+
+          <!-- Email -->
+          <div class="form-group mb-3">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email address" />
+            <small class="error-message"
+              [class.visible]="loginform.get('email')?.touched && loginform.get('email')?.errors">
+              <span *ngIf="loginform.get('email')?.errors?.['required']">Email is required.</span>
+              <span *ngIf="loginform.get('email')?.errors?.['email']">Enter a valid email.</span>
+            </small>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group mb-3">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+            <i class="toggle-password bi bi-eye-slash"></i>
+            <small class="error-message"
+              [class.visible]="loginform.get('password')?.touched && loginform.get('password')?.errors">
+              <span *ngIf="loginform.get('password')?.errors?.['required']">Password is required.</span>
+
+            </small>
+          </div>
+
+          <!-- Forgot Password -->
+          <div class="text-end mb-3">
+            <a href="#" class="forgot-password-link">Forgot password?</a>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-submit w-100 mb-3" [disabled]="loginform.invalid || isSubmitting">
+            {{ isSubmitting ? 'Logging In...' : 'Login' }}
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="footer-link">
+          Don’t have an account? <a href="/auth/register">Signup</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
