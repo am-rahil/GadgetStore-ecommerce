@@ -20,6 +20,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpGet("GetAllOrders")]
+        [Authorize(Roles = "Customer,Admin")]
         public async Task<IActionResult> GetAllOrders()
         {
             var result = await _orderRepository.GetAllOrders();
@@ -40,6 +41,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPost("CreateOrder")]
+        //[Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> CreateOrder([FromBody] OrderRequest request)
         {
             if (!ModelState.IsValid)
@@ -53,6 +55,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPut("UpdateOrderStatus")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateOrderStatus(int id, [FromQuery] string status)
         {
             var result = await _orderRepository.UpdateOrderStatus(id, status);
@@ -63,6 +66,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpDelete("DeleteOrder")]
+        //[Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
             var result = await _orderRepository.DeleteOrder(id);
@@ -70,6 +74,18 @@ namespace Ecommerce.Api.Controllers
                 return NotFound(result.Errors);
 
             return Ok(result.Response);
+        }
+
+        [HttpGet("GetOrdersByUserId")]
+        //[Authorize(Roles = "User,Admin")]
+        public async Task<IActionResult> GetOrdersByUserId(int userId)
+        {
+            var result = await _orderRepository.GetAllOrders();
+            if (result.isError)
+                return NotFound(result.Errors);
+
+            var userOrders = result.Response.Where(o => o.UserId == userId).ToList();
+            return Ok(userOrders);
         }
 
 

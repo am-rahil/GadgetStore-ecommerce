@@ -14,5 +14,11 @@ namespace Ecommerce.Entity.DTO
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
+        public decimal ProductPrice { get; set; }
+        public string? ProductImagePath { get; set; }
+        public string? CategoryName { get; set; }
+        public string? SupplierName { get; set; }
+        public string? Description { get; set; }
+
     }
 }

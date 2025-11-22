@@ -23,6 +23,10 @@ namespace Ecommerce.Entity.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { get; set; }
+        [Required, MaxLength(200)]
+        public string address { get; set; }
+        public string pincode { get; set; }
+        public string Phone { get; set; }
 
         // Relationships
         public ICollection<OrderDetail> OrderDetails { get; set; }

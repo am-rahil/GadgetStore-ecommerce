@@ -163,6 +163,10 @@ namespace Ecommerce.Entity.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -173,6 +177,15 @@ namespace Ecommerce.Entity.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("pincode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
 
@@ -188,6 +201,10 @@ namespace Ecommerce.Entity.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -293,6 +310,29 @@ namespace Ecommerce.Entity.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("ProductsSet");
+                });
+
+            modelBuilder.Entity("Ecommerce.Entity.Models.ProductImage", b =>
+                {
+                    b.Property<int>("ProductImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductImageId"));
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductImageId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("productImages");
                 });
 
             modelBuilder.Entity("Ecommerce.Entity.Models.Role", b =>
@@ -558,6 +598,17 @@ namespace Ecommerce.Entity.Migrations
                     b.Navigation("Supplier");
                 });
 
+            modelBuilder.Entity("Ecommerce.Entity.Models.ProductImage", b =>
+                {
+                    b.HasOne("Ecommerce.Entity.Models.Product", "Product")
+                        .WithMany("productImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Ecommerce.Entity.Models.Role", null)
@@ -635,6 +686,8 @@ namespace Ecommerce.Entity.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("productImages");
                 });
 
             modelBuilder.Entity("Ecommerce.Entity.Models.Role", b =>

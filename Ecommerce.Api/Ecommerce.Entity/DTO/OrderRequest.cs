@@ -15,6 +15,11 @@ namespace Ecommerce.Entity.DTO
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Total amount must be greater than zero")]
         public decimal TotalAmount { get; set; }
+        public string address { get; set; }
+        public string pincode { get; set; }
+        public string Phone { get; set; }
+        public string Status { get; set; }
+       
 
         [Required]
         public List<OrderDetailRequest> OrderDetails { get; set; }
@@ -31,6 +36,7 @@ namespace Ecommerce.Entity.DTO
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
         public decimal UnitPrice { get; set; }
+        public string ImagePath { get; set; }
     }
 }
 

@@ -38,5 +38,6 @@ namespace Ecommerce.Entity.Models
        
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<CartItem> Carts { get; set; }
+        public ICollection<ProductImage> productImages { get; set; } = new List<ProductImage>();
     }
 }

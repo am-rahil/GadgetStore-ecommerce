@@ -7,7 +7,7 @@ namespace Ecommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class SecurityController : ControllerBase
     {
         private readonly ISecurityRepository _securityRepository;
@@ -50,5 +50,22 @@ namespace Ecommerce.Api.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("getusers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _securityRepository.GetAllUsers();
+            return Ok(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            await _securityRepository.DeleteUser(id);
+            return Ok(new { message = "User deleted successfully" });
+        }
+
     }
 }

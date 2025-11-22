@@ -20,6 +20,10 @@ namespace Ecommerce.Entity.DTO
         [MinLength(6)]
         public string Password { get; set; }
 
+        [Phone]
+        [Required]
+        public string PhoneNumber { get; set; }
+
 
 
     }

@@ -1,0 +1,10 @@
+.vs/
+
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+
+
+Backend/bin/
+Backend/obj/
+Backend/appsettings.Development.json

@@ -5,13 +5,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------------------- DbContext ----------------------
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 // ---------------------- Identity ----------------------
 builder.Services.AddIdentity<ApplicationUser, Role>()
@@ -19,8 +21,6 @@ builder.Services.AddIdentity<ApplicationUser, Role>()
     .AddDefaultTokenProviders();
 
 // ---------------------- JWT Authentication ----------------------
-
-//swagger auotherization
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -44,11 +44,10 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            new string[] {} // You can add scopes if needed
+            new string[] {}
         }
     });
 });
-
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 builder.Services.AddAuthentication(options =>
@@ -64,12 +63,26 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = true, //  ensures token expiry is checked
-        ValidateIssuerSigningKey = true, //  ensures token is properly signed
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"])),
+        RoleClaimType = ClaimTypes.Role,
+        NameClaimType = ClaimTypes.Name
     };
+});
+
+// ---------------------- CORS Setup ----------------------
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:999") // your frontend origin
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
 
 // ---------------------- Repositories ----------------------
@@ -81,8 +94,6 @@ builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ISecurityRepository, SecurityRepository>();
 
-
-
 // ---------------------- Controllers & Swagger ----------------------
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -92,8 +103,8 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+// ? Build only ONCE
 var app = builder.Build();
 
 // ---------------------- SEED ADMIN & ROLES ----------------------
@@ -103,27 +114,30 @@ async Task SeedAdminAndRolesAsync(IApplicationBuilder app)
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-    string[] roleNames = { "Admin", "Customer" };
+    string[] roles = { "Admin", "Customer" };
 
-    // 1?? Ensure roles exist
-    foreach (var roleName in roleNames)
+    foreach (var roleName in roles)
     {
         if (!await roleManager.RoleExistsAsync(roleName))
         {
-            await roleManager.CreateAsync(new Role
+            var role = new Role
             {
                 Name = roleName,
                 DisplayName = roleName
-            });
+            };
+            var roleResult = await roleManager.CreateAsync(role);
+            if (!roleResult.Succeeded)
+            {
+                Console.WriteLine($"Error creating role {roleName}: {string.Join(", ", roleResult.Errors.Select(e => e.Description))}");
+            }
         }
     }
 
-    // 2?? Seed default Admin user
     string adminEmail = "admin@shop.com";
     string adminPassword = "Admin@123";
 
-    var adminUser = await userManager.FindByEmailAsync(adminEmail);
-    if (adminUser == null)
+    var admin = await userManager.FindByEmailAsync(adminEmail);
+    if (admin == null)
     {
         var newAdmin = new ApplicationUser
         {
@@ -137,6 +151,10 @@ async Task SeedAdminAndRolesAsync(IApplicationBuilder app)
         {
             await userManager.AddToRoleAsync(newAdmin, "Admin");
         }
+        else
+        {
+            Console.WriteLine($"Error creating admin user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+        }
     }
 }
 
@@ -148,12 +166,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 
-// ?? Run seeding before app.Run()
+// ? Run seeding before the app starts
 await SeedAdminAndRolesAsync(app);
 
 app.Run();

@@ -18,6 +18,7 @@ C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommer
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.AssemblyInfoInputs.cache
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.AssemblyInfo.cs
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.csproj.CoreCompileInputs.cache
+C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.sourcelink.json
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.dll
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\refint\Ecommerce.Common.dll
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Common\obj\Debug\net8.0\Ecommerce.Common.pdb

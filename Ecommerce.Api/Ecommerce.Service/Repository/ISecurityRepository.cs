@@ -13,5 +13,8 @@ namespace Ecommerce.Service.Repository
         Task<UserResponse> Register(RegisterRequest request);
         Task<UserResponse> Login(LoginRequest request);
         Task<string> GenerateToken(ApplicationUser user);
+        Task<IEnumerable<UserResponse>> GetAllUsers();
+        Task DeleteUser(int userId);
+
     }
 }

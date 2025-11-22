@@ -34,7 +34,7 @@ namespace Ecommerce.Service.Repository
 
             if (existingItem != null)
             {
-                existingItem.Quantity += request.Quantity;
+                existingItem.Quantity = request.Quantity;
                 existingItem.TotalPrice = existingItem.Quantity * product.Price;
                 _context.CartsSet.Update(existingItem);
             }
@@ -95,7 +95,13 @@ namespace Ecommerce.Service.Repository
                     ProductId = c.ProductId,
                     ProductName = c.Product.ProductName,
                     Quantity = c.Quantity,
-                    TotalPrice = c.TotalPrice
+                    TotalPrice = c.TotalPrice,
+                    ProductPrice = c.Product.Price,
+                    ProductImagePath = c.Product.ImagePath,
+                    CategoryName = c.Product.Category.CategoryName,
+                    SupplierName = c.Product.Supplier.SupplierName,
+                    Description=c.Product.Description
+
                 }).ToListAsync();
 
             if (cartItems.Any())

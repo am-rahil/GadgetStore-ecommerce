@@ -26,5 +26,8 @@ namespace Ecommerce.Entity.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal SubTotal { get; set; }
+
+        public string ImagePath { get; set; }
+
     }
 }

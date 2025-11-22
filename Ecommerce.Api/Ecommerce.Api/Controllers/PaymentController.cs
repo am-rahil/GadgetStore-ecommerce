@@ -27,6 +27,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpGet("GetallPayments")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllPayments()
         {
             var result = await _paymentRepository.GetAllPayments();
@@ -38,6 +39,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpGet("GetPaymentById")]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> GetPaymentById(int id)
         {
             var result = await _paymentRepository.GetPaymentById(id);
@@ -50,6 +52,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpPost("AddPayment")]
+        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> AddPayment([FromBody] PaymentRequest request)
         {
             if (!ModelState.IsValid)
@@ -85,6 +88,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpPut("Update Payment")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePayment(int id, [FromBody] PaymentRequest request)
         {
             var existingPayment = await _paymentRepository.GetPaymentById(id);
@@ -103,6 +107,7 @@ namespace Ecommerce.Api.Controllers
 
         // DELETE 
         [HttpDelete("Delete Payment")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePayment(int id)
         {
 

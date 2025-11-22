@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Ecommerce.Entity.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, int>
 
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
         // DbSets (tables)
@@ -23,13 +24,15 @@ namespace Ecommerce.Entity.Models
         public DbSet<Order> OrdersSet { get; set; }
         public DbSet<OrderDetail> OrderDetailsSet { get; set; }
         public DbSet<Payment> PaymentsSet { get; set; }
+        public DbSet<ProductImage> productImages { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-           
+
 
             // One-to-many: Category -> Product
             modelBuilder.Entity<Category>()
@@ -45,7 +48,7 @@ namespace Ecommerce.Entity.Models
                 .HasForeignKey(p => p.SupplierId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-           
+
 
             // One-to-many: User -> Orders
             modelBuilder.Entity<ApplicationUser>()
@@ -74,6 +77,12 @@ namespace Ecommerce.Entity.Models
                 .WithOne(od => od.Product)
                 .HasForeignKey(od => od.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            //One-to-many: Product -> ProductImages
+            modelBuilder.Entity<ProductImage>()
+                .HasOne(pi => pi.Product)
+                .WithMany(pi => pi.productImages)
+                .HasForeignKey(pi => pi.ProductId);
         }
     }
 }

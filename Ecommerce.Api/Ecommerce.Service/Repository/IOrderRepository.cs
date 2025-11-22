@@ -16,5 +16,6 @@ namespace Ecommerce.Service.Repository
         Task<Result<OrderResponse>> CreateOrder(OrderRequest request);
         Task<Result<string>> UpdateOrderStatus(int id, string status);
         Task<Result<string>> DeleteOrder(int id);
+        
     }
 }

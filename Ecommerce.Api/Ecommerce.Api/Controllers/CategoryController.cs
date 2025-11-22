@@ -23,6 +23,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpGet("GetAllCategories")]
+        //[Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> GetAllCategories()
         {
             var result = await _categoryRepository.GetAllCategories();
@@ -43,6 +44,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpGet("GetCategoryById")]
+        //[Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             var result = await _categoryRepository.GetCategoryById(id);
@@ -60,6 +62,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpPost("AddCategory")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCategory([FromBody] CategoryRequest request)
         {
             if (!ModelState.IsValid)
@@ -79,6 +82,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpPut("UpdateCategory")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryRequest request)
         {
             var existingCategory = await _categoryRepository.GetCategoryById(id);
@@ -95,6 +99,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpDelete("DeleteCategory")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var existingCategory = await _categoryRepository.GetCategoryById(id);

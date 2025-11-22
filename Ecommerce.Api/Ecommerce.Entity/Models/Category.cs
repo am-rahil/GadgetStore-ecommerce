@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Ecommerce.Entity.Models
@@ -19,6 +20,7 @@ namespace Ecommerce.Entity.Models
         public string Description { get; set; }
 
         // Relationship
+        
         public ICollection<Product> Products { get; set; }
 
     }

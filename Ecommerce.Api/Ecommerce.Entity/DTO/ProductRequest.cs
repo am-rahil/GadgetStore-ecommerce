@@ -29,5 +29,8 @@ namespace Ecommerce.Entity.DTO
         [Required]
         public int SupplierId { get; set; }
         public IFormFile? ImageFile { get; set; }
+
+        // New: Multiple images
+        public List<IFormFile>? GalleryImages { get; set; }
     }
 }

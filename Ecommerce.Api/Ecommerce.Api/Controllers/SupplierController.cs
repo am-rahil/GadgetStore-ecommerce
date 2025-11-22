@@ -21,6 +21,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpGet("GetAllSuppliers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllSuppliers()
         {
             var result = await _supplierRepository.GetAllSuppliers();
@@ -30,6 +31,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpGet("GetSupplierById")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetSupplierById(int id)
         {
             var result = await _supplierRepository.GetSupplierById(id);
@@ -39,6 +41,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPost("AddSupplier")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddSupplier([FromBody] SupplierRequest request)
         {
             if (!ModelState.IsValid)
@@ -57,6 +60,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPut("UpdateSupplier")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateSupplier(int id, [FromBody] SupplierRequest request)
         {
             var existing = await _supplierRepository.GetSupplierById(id);
@@ -74,6 +78,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpDelete("DeleteSupplier")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteSupplier(int id)
         {
             await _supplierRepository.DeleteSupplier(id);

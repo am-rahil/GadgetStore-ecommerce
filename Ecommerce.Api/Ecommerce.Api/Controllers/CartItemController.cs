@@ -21,6 +21,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpGet("GetUserCart")]
+        
         public async Task<IActionResult> GetUserCart(int userId)
         {
             var result = await _cartItemRepository.GetUserCart(userId);
@@ -31,6 +32,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPost("AddOrUpdateCartItem")]
+        
         public async Task<IActionResult> AddOrUpdateCartItem([FromBody] CartItemRequest request)
         {
             if (!ModelState.IsValid)
@@ -44,7 +46,7 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpDelete("ClearCart")]
-
+        
         public async Task<IActionResult> ClearCart(int userId)
         {
             var result = await _cartItemRepository.ClearCart(userId);
@@ -56,6 +58,7 @@ namespace Ecommerce.Api.Controllers
 
 
         [HttpDelete("RemoveCartItem")]
+        
         public async Task<IActionResult> RemoveCartItem(int cartId)
         {
             var result = await _cartItemRepository.RemoveCartItem(cartId);

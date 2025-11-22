@@ -30,6 +30,7 @@ C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecomme
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerce.Service.AssemblyInfoInputs.cache
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerce.Service.AssemblyInfo.cs
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerce.Service.csproj.CoreCompileInputs.cache
+C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerce.Service.sourcelink.json
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerc.B292E58B.Up2Date
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\Ecommerce.Service.dll
 C:\PROGRAMMING\Ecommerce\Ecommerce.Api\Ecommerce.Service\obj\Debug\net8.0\refint\Ecommerce.Service.dll
