@@ -62,51 +62,53 @@ This project follows **clean architecture**, **scalable design principles**, and
 
 ## 📁 Project Folder Structure
 
-### Backend – `Ecommerce.Api`
 Ecommerce.Api/
 ├── Ecommerce.Api/
-│ ├── Controllers/
-│ ├── Properties/
-│ ├── wwwroot/
-│ │ └── Images/
-│ ├── appsettings.json
-│ ├── Program.cs
+│   ├── Controllers/
+│   ├── Properties/
+│   ├── wwwroot/
+│   │   └── Images/
+│   ├── appsettings.json
+│   └── Program.cs
 │
 ├── Ecommerce.Common/
-│ └── CommonDto/
+│   └── CommonDto/
 │
 ├── Ecommerce.Entity/
-│ ├── DTO/
-│ ├── Models/
-│ ├── Migrations/
+│   ├── DTO/
+│   ├── Models/
+│   └── Migrations/
 │
 └── Ecommerce.Service/
-└── Repository/
+    └── Repository/
+
 
 
 ### Frontend – `Ecommerce.Frontend` (Angular)
 Ecommerce.Frontend/
+Ecommerce.Frontend/
 └── Ecommerce/
-├── src/
-│ ├── app/
-│ │ ├── admin/
-│ │ ├── auth/
-│ │ ├── core/
-│ │ ├── layout/
-│ │ ├── orders/
-│ │ ├── pages/
-│ │ ├── products/
-│ │ ├── shared/
-│ │ ├── app.module.ts
-│ │ └── app-routing.module.ts
-│ ├── assets/
-│ ├── environments/
-│ ├── index.html
-│ ├── main.ts
-│ └── styles.css
-├── angular.json
-├── package.json
-└── README.md
+    ├── src/
+    │   ├── app/
+    │   │   ├── admin/
+    │   │   ├── auth/
+    │   │   ├── core/
+    │   │   ├── layout/
+    │   │   ├── orders/
+    │   │   ├── pages/
+    │   │   ├── products/
+    │   │   ├── shared/
+    │   │   ├── app.module.ts
+    │   │   └── app-routing.module.ts
+    │   ├── assets/
+    │   ├── environments/
+    │   ├── index.html
+    │   ├── main.ts
+    │   └── styles.css
+    │
+    ├── angular.json
+    ├── package.json
+    └── README.md
 
 
 ---
